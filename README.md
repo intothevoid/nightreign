@@ -4,6 +4,8 @@ A comprehensive, searchable database for Elden Ring: Nightreign items, stats, ef
 
 ![Nightreign Database UI](ui.jpg)
 
+A live demo is available at: [nightreign.karan.myds.me](https://nightreign.karan.myds.me)
+
 ## Features
 
 - **Automatic Excel Loading**: Loads the Nightreign data file automatically on startup
