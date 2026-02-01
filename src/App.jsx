@@ -5,8 +5,8 @@ import { searchAllSheets, getCategories } from './utils/searchEngine';
 import { Header } from './components/Header';
 import { SearchBar } from './components/SearchBar';
 import { CategoryFilter } from './components/CategoryFilter';
-import { FileUploader } from './components/FileUploader';
 import { DataCard } from './components/DataCard';
+import { Footer } from './components/Footer';
 
 export default function App() {
   const { data, loading, error, reload } = useExcelData();
@@ -36,7 +36,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-200 font-sans selection:bg-amber-900 selection:text-white pb-20">
+    <div className="min-h-screen bg-neutral-950 text-neutral-200 font-sans selection:bg-amber-900 selection:text-white flex flex-col">
 
       {/* Header */}
       <Header loading={loading} />
@@ -56,11 +56,6 @@ export default function App() {
             onCategoryChange={setActiveCategory}
           />
         )}
-
-        {/* Optional File Uploader */}
-        <div className="mt-6 flex justify-end">
-          <FileUploader onDataLoaded={handleDataLoaded} />
-        </div>
       </div>
 
       {/* Main Content */}
@@ -126,6 +121,9 @@ export default function App() {
         )}
 
       </div>
+
+      {/* Footer */}
+      <Footer />
 
     </div>
   );

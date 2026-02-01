@@ -11,7 +11,7 @@ export function Header({ loading }) {
           </div>
           <div>
             <h1 className="text-2xl font-serif text-neutral-100 tracking-wide font-bold">
-              Nightreign Database
+              Elden Ring: Nightreign Database
             </h1>
             <div className="flex items-center gap-3">
               <p className="text-neutral-500 text-sm flex items-center gap-2">
