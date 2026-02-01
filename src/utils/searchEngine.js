@@ -1,4 +1,26 @@
-import { categorizeSheet } from './excelParser';
+/**
+ * Categorizes a sheet name into a display category
+ * @param {string} sheetName - The name of the sheet
+ * @returns {string} - Category name for filtering/display
+ */
+export function categorizeSheet(sheetName) {
+  const lower = sheetName.toLowerCase();
+
+  // New categories
+  if (lower === 'level up cost') return 'Levels';
+  if (lower.includes('nightlord')) return 'Nightlord Stats';
+  if (lower.includes('everdark') || lower.includes('sovereign')) return 'Everdark Sovereign Stats';
+
+  // Existing categories
+  if (lower.includes('talisman')) return 'Talismans';
+  if (lower.includes('weapon')) return 'Weapons';
+  if (lower.includes('dormant') || lower.includes('deep')) return 'Dormant Powers';
+  if (lower.includes('relic')) return 'Relics';
+  if (lower.includes('consumable')) return 'Consumables';
+  if (lower.includes('character') && lower.includes('stat')) return 'Stats';
+
+  return 'Other';
+}
 
 /**
  * Searches through all sheets and rows for matches

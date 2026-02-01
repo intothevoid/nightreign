@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Sparkles, Shield, Sword, Zap, Scroll, Droplet, Skull, Crown
+  Sparkles, Shield, Sword, Zap, Scroll, Droplet, Skull, Crown, TrendingUp
 } from 'lucide-react';
 
 const CATEGORY_ICONS = {
@@ -11,6 +11,9 @@ const CATEGORY_ICONS = {
   'Relics': Scroll,
   'Consumables': Droplet,
   'Stats': Skull,
+  'Levels': TrendingUp,
+  'Nightlord Stats': Crown,
+  'Everdark Sovereign Stats': Crown,
   'Bosses': Crown,
   'Chalices': Droplet,
   'Other': Sparkles

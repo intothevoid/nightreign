@@ -22,6 +22,14 @@ export async function loadExcelFile(url) {
   }
 }
 
+// Sheets to completely ignore during parsing
+const IGNORED_SHEETS = [
+  'Credits and Useful Links',
+  'Chalices',
+  'Character Stats Table (Outdated',
+  'Guaranteed Relics'
+];
+
 /**
  * Parses a workbook into a structured data object
  * @param {XLSX.WorkBook} workbook - The workbook to parse
@@ -31,6 +39,11 @@ export function parseWorkbook(workbook) {
   const data = {};
 
   workbook.SheetNames.forEach(sheetName => {
+    // Skip ignored sheets
+    if (IGNORED_SHEETS.includes(sheetName)) {
+      return;
+    }
+
     const worksheet = workbook.Sheets[sheetName];
     const jsonData = XLSX.utils.sheet_to_json(worksheet, {
       raw: false,  // Convert dates and numbers to strings
@@ -46,23 +59,3 @@ export function parseWorkbook(workbook) {
   return data;
 }
 
-/**
- * Categorizes a sheet name into a display category
- * @param {string} sheetName - The name of the sheet
- * @returns {string} - Category name for filtering/display
- */
-export function categorizeSheet(sheetName) {
-  const lower = sheetName.toLowerCase();
-
-  if (lower.includes('talisman')) return 'Talismans';
-  if (lower.includes('weapon') && !lower.includes('deep')) return 'Weapons';
-  if (lower.includes('dormant') || lower.includes('deep')) return 'Dormant Powers';
-  if (lower.includes('relic') && !lower.includes('deep')) return 'Relics';
-  if (lower.includes('consumable')) return 'Consumables';
-  if (lower.includes('stat') || lower.includes('level')) return 'Stats';
-  if (lower.includes('nightlord') || lower.includes('sovereign')) return 'Bosses';
-  if (lower.includes('chalice')) return 'Chalices';
-  if (lower.includes('guaranteed')) return 'Relics';
-
-  return 'Other';
-}

@@ -7,12 +7,23 @@ const CATEGORY_CONFIG = {
   'Talismans': { icon: Shield, color: 'text-blue-400 border-blue-900/30 bg-blue-900/10', accent: 'bg-blue-600' },
   'Weapons': { icon: Sword, color: 'text-red-400 border-red-900/30 bg-red-900/10', accent: 'bg-red-600' },
   'Stats': { icon: Skull, color: 'text-purple-400 border-purple-900/30 bg-purple-900/10', accent: 'bg-purple-600' },
+  'Levels': { icon: Skull, color: 'text-indigo-400 border-indigo-900/30 bg-indigo-900/10', accent: 'bg-indigo-600' },
   'Consumables': { icon: Droplet, color: 'text-emerald-400 border-emerald-900/30 bg-emerald-900/10', accent: 'bg-emerald-600' },
   'Relics': { icon: Scroll, color: 'text-amber-400 border-amber-900/30 bg-amber-900/10', accent: 'bg-amber-600' },
   'Dormant Powers': { icon: Zap, color: 'text-yellow-400 border-yellow-900/30 bg-yellow-900/10', accent: 'bg-yellow-600' },
-  'Bosses': { icon: Crown, color: 'text-red-400 border-red-900/30 bg-red-900/10', accent: 'bg-red-600' },
+  'Nightlord Stats': { icon: Crown, color: 'text-red-400 border-red-900/30 bg-red-900/10', accent: 'bg-red-600' },
+  'Everdark Sovereign Stats': { icon: Crown, color: 'text-purple-400 border-purple-900/30 bg-purple-900/10', accent: 'bg-purple-600' },
   'Chalices': { icon: Droplet, color: 'text-cyan-400 border-cyan-900/30 bg-cyan-900/10', accent: 'bg-cyan-600' },
   'Other': { icon: Sparkles, color: 'text-neutral-500 border-neutral-800', accent: 'bg-neutral-600' }
+};
+
+// Mapping of sheet names to their title column
+const SHEET_TITLE_COLUMN = {
+  'Weapon Effects': 'Effect Description In-Game',
+  'Deep Weapon Effects': 'Effect Description In-Game',
+  'Relic Effects': 'Relic Description',
+  'Deep Relic Effects': 'Relic Description',
+  'Dormant Powers': 'Dormant Power'
 };
 
 export function DataCard({ item, searchQuery }) {
@@ -22,21 +33,22 @@ export function DataCard({ item, searchQuery }) {
   const config = CATEGORY_CONFIG[category] || CATEGORY_CONFIG['Other'];
   const Icon = config.icon;
 
-  // Extract display keys (excluding internal metadata)
+  // Determine the title column for this sheet
+  const titleColumn = SHEET_TITLE_COLUMN[sheetName];
+
+  // Extract title from the designated column or fallback to Name
+  const title = titleColumn && item[titleColumn]
+    ? item[titleColumn]
+    : item.Name || (Object.keys(item).find(key => !key.startsWith('_')) ? item[Object.keys(item).find(key => !key.startsWith('_'))] : 'Unknown Item');
+
+  // Extract display keys (excluding internal metadata and title column)
   const displayKeys = Object.keys(item).filter(key =>
     !key.startsWith('_') &&
+    key !== titleColumn &&  // Exclude title column from body
     item[key] !== null &&
     item[key] !== undefined &&
     item[key] !== ''
   );
-
-  // Try to find a title (Name, Relic Description, Dormant Power, etc.)
-  const title = item.Name ||
-                item['Relic Description'] ||
-                item['Dormant Power'] ||
-                item['Effect Description In-Game'] ||
-                item.Category ||
-                displayKeys.length > 0 ? item[displayKeys[0]] : 'Unknown Item';
 
   // Highlight text matching the search query
   const highlightText = (text, query) => {
@@ -68,8 +80,8 @@ export function DataCard({ item, searchQuery }) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   };
 
-  // Check if this is a boss (has Health/Poise stats)
-  const isBoss = category === 'Bosses' || item.Health || item.Poise;
+  // Check if this is a boss (has Health/Poise stats or is in boss categories)
+  const isBoss = category === 'Nightlord Stats' || category === 'Everdark Sovereign Stats' || item.Health || item.Poise;
 
   return (
     <div className={`
