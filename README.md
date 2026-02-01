@@ -27,7 +27,7 @@ A comprehensive, searchable database for Elden Ring: Nightreign items, stats, ef
    npm run dev
    ```
 
-3. Open [http://localhost:5173](http://localhost:5173) in your browser
+3. Open [http://localhost:3383](http://localhost:3383) in your browser
 
 ### Docker Deployment
 
@@ -36,12 +36,12 @@ A comprehensive, searchable database for Elden Ring: Nightreign items, stats, ef
    docker-compose up --build
    ```
 
-2. Access at [http://localhost:8080](http://localhost:8080)
+2. Access at [http://localhost:3383](http://localhost:3383)
 
 Or build manually:
 ```bash
 docker build -t nightreign-dashboard .
-docker run -p 8080:80 nightreign-dashboard
+docker run -p 3383:80 nightreign-dashboard
 ```
 
 ## Project Structure
