@@ -127,7 +127,9 @@ See LICENSE file for details.
 
 ## Credits
 
-Data compiled from Elden Ring: Nightreign game information.
+Data compiled from Elden Ring: Nightreign game information and from the Nightreign Relic Stat Spreadsheet I found here -
+
+![Nightreign Relic Stat Spreadsheet](https://steamcommunity.com/app/2622380/discussions/0/597404329477993941/)
 
 ---
 

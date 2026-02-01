@@ -15,11 +15,6 @@ export function searchAllSheets(data, query = '', categoryFilter = 'all') {
   const normalizedQuery = query.toLowerCase().trim();
   const results = [];
 
-  // If no query, return empty or all based on your preference
-  if (normalizedQuery === '') {
-    return [];
-  }
-
   Object.entries(data).forEach(([sheetName, rows]) => {
     if (!Array.isArray(rows)) return;
 
@@ -31,6 +26,16 @@ export function searchAllSheets(data, query = '', categoryFilter = 'all') {
     }
 
     rows.forEach(row => {
+      // If no query, include all items (with category filter applied)
+      if (normalizedQuery === '') {
+        results.push({
+          ...row,
+          _sheet: sheetName,
+          _category: category
+        });
+        return;
+      }
+
       // Check if any cell value contains the search term
       const matches = Object.entries(row).some(([key, value]) => {
         // Skip empty or null values

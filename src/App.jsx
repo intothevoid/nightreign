@@ -86,8 +86,11 @@ export default function App() {
             {filteredResults.length > 0 ? (
               <>
                 <div className="mb-4 text-neutral-400 text-sm">
-                  Found {filteredResults.length} result{filteredResults.length !== 1 ? 's' : ''}
-                  {searchQuery && ` for "${searchQuery}"`}
+                  {searchQuery ? (
+                    <>Found {filteredResults.length} result{filteredResults.length !== 1 ? 's' : ''} for "{searchQuery}"</>
+                  ) : (
+                    <>Showing {filteredResults.length} item{filteredResults.length !== 1 ? 's' : ''}{activeCategory !== 'All' ? ` in ${activeCategory}` : ''}</>
+                  )}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {filteredResults.map((item, idx) => (
@@ -95,7 +98,7 @@ export default function App() {
                   ))}
                 </div>
               </>
-            ) : searchQuery ? (
+            ) : (
               <div className="text-center py-24 opacity-60">
                 <div className="relative inline-block group">
                   <Filter className="h-16 w-16 mx-auto mb-4 text-neutral-700 transition-transform group-hover:scale-110" />
@@ -106,14 +109,6 @@ export default function App() {
                   Your search for "<span className="text-neutral-400">{searchQuery}</span>" didn't match any records.
                   <br />
                   Try adjusting your search terms.
-                </p>
-              </div>
-            ) : (
-              <div className="text-center py-24 opacity-60">
-                <Filter className="h-16 w-16 mx-auto mb-4 text-neutral-700" />
-                <p className="text-2xl font-serif text-neutral-400">Start searching</p>
-                <p className="text-neutral-600 mt-2 max-w-md mx-auto">
-                  Enter a search term above to find items, effects, stats, and more from the Nightreign database.
                 </p>
               </div>
             )}
