@@ -2,7 +2,7 @@
   "name": "elden-ring-nightreign-database",
   "version": "1.0.0",
   "type": "module",
-  "description": "Elden Ring: Nightreign Database - Comprehensive information dashboard",
+  "description": "Elden Ring: Nightreign DB - Comprehensive information dashboard",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
