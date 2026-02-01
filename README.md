@@ -2,6 +2,8 @@
 
 A comprehensive, searchable database for Elden Ring: Nightreign items, stats, effects, and more.
 
+![Nightreign Database UI](ui.jpg)
+
 ## Features
 
 - **Automatic Excel Loading**: Loads the Nightreign data file automatically on startup
@@ -129,4 +131,4 @@ Data compiled from Elden Ring: Nightreign game information.
 
 ---
 
-2026 © bindok. Made with ❤️ in Adelaide, Australia
+2026 © Karan Kadam. Made with ❤️ in Adelaide, Australia
