@@ -9,7 +9,7 @@ export function SearchBar({ value, onChange, onClear }) {
       </div>
       <input
         type="text"
-        className="block w-full pl-10 md:pl-14 pr-10 md:pr-12 py-3 md:py-4 bg-neutral-900/80 border border-neutral-700 rounded-xl md:rounded-2xl text-sm md:text-lg text-neutral-100 placeholder-neutral-500 focus:ring-2 focus:ring-amber-700/50 focus:border-amber-700 transition-all shadow-2xl"
+        className="block w-full pl-10 md:pl-14 pr-10 md:pr-12 py-3 md:py-4 bg-neutral-900/80 border border-neutral-700 rounded-xl md:rounded-2xl text-base md:text-lg text-neutral-100 placeholder-neutral-500 focus:ring-2 focus:ring-amber-700/50 focus:border-amber-700 transition-all shadow-2xl"
         placeholder="Search for effects, items, stats..."
         value={value}
         onChange={(e) => onChange(e.target.value)}

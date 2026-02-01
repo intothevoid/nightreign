@@ -20,7 +20,7 @@ export function CategoryFilter({ categories, activeCategory, onCategoryChange })
   const allCategories = ['All', ...categories];
 
   return (
-    <div className="flex gap-2 mt-4 md:mt-8 overflow-x-auto pb-2 scrollbar-hide justify-start md:justify-center">
+    <div className="flex flex-wrap gap-2 mt-4 md:mt-8 justify-center">
       {allCategories.map(category => {
         const Icon = CATEGORY_ICONS[category] || Sparkles;
         const isActive = activeCategory === category;
