@@ -49,7 +49,7 @@ docker run -p 8080:80 nightreign-dashboard
 ```
 nightreign-dashboard/
 ├── public/
-│   └── nightreign-1.03.2.xlsx    # Excel data file
+│   └── nightreign-data.xlsx    # Excel data file
 ├── src/
 │   ├── components/               # React components
 │   │   ├── DataCard.jsx
@@ -132,5 +132,3 @@ Data compiled from Elden Ring: Nightreign game information and from the Nightrei
 ![Nightreign Relic Stat Spreadsheet](https://steamcommunity.com/app/2622380/discussions/0/597404329477993941/)
 
 ---
-
-2026 © Karan Kadam. Made with ❤️ in Adelaide, Australia

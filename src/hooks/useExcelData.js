@@ -6,7 +6,7 @@ import { loadExcelFile } from '../utils/excelParser';
  * @param {string} fileUrl - URL of the Excel file to load
  * @returns {Object} - { data, loading, error, reload }
  */
-export function useExcelData(fileUrl = '/nightreign-1.03.2.xlsx') {
+export function useExcelData(fileUrl = '/nightreign-data.xlsx') {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

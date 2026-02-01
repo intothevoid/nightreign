@@ -20,6 +20,11 @@ export function searchAllSheets(data, query = '', categoryFilter = 'all') {
 
     const category = categorizeSheet(sheetName);
 
+    // Exclude 'Other' category completely
+    if (category === 'Other') {
+      return;
+    }
+
     // Apply category filter
     if (categoryFilter !== 'all' && category !== categoryFilter) {
       return;
@@ -72,7 +77,10 @@ export function getCategories(data) {
 
   Object.keys(data).forEach(sheetName => {
     const category = categorizeSheet(sheetName);
-    categories.add(category);
+    // Exclude 'Other' category
+    if (category !== 'Other') {
+      categories.add(category);
+    }
   });
 
   return Array.from(categories).sort();
