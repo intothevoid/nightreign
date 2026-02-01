@@ -1,4 +1,4 @@
-# Elden Ring: Nightreign Database
+# Elden Ring: Nightreign DB
 
 A comprehensive, searchable database for Elden Ring: Nightreign items, stats, effects, and more.
 

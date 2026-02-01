@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Sparkles, Shield, Sword, Zap, Scroll, Droplet, Skull, Crown
+  Sparkles, Shield, Sword, Zap, Scroll, Droplet, Skull, Crown, ChevronDown, ChevronUp
 } from 'lucide-react';
 
 const CATEGORY_CONFIG = {
@@ -27,6 +27,8 @@ const SHEET_TITLE_COLUMN = {
 };
 
 export function DataCard({ item, searchQuery }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const category = item._category || 'Other';
   const sheetName = item._sheet || 'Unknown';
 
@@ -49,6 +51,9 @@ export function DataCard({ item, searchQuery }) {
     item[key] !== undefined &&
     item[key] !== ''
   );
+
+  const hasMoreFields = displayKeys.length > 8;
+  const fieldsToShow = isExpanded ? displayKeys : displayKeys.slice(0, 8);
 
   // Highlight text matching the search query
   const highlightText = (text, query) => {
@@ -119,7 +124,7 @@ export function DataCard({ item, searchQuery }) {
 
         {/* Data Fields */}
         <div className="space-y-2.5">
-          {displayKeys.slice(0, 8).map(key => (
+          {fieldsToShow.map(key => (
             <div
               key={key}
               className="flex flex-col sm:flex-row sm:justify-between text-sm border-b border-neutral-800/50 pb-1 last:border-0 last:pb-0"
@@ -136,10 +141,23 @@ export function DataCard({ item, searchQuery }) {
               </span>
             </div>
           ))}
-          {displayKeys.length > 8 && (
-            <p className="text-xs text-neutral-600 italic pt-1 text-right">
-              +{displayKeys.length - 8} more fields...
-            </p>
+          {hasMoreFields && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="w-full text-xs text-neutral-500 hover:text-neutral-300 italic pt-1 flex items-center justify-end gap-1 transition-colors"
+            >
+              {isExpanded ? (
+                <>
+                  Show less
+                  <ChevronUp size={14} />
+                </>
+              ) : (
+                <>
+                  +{displayKeys.length - 8} more fields...
+                  <ChevronDown size={14} />
+                </>
+              )}
+            </button>
           )}
         </div>
       </div>
